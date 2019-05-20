@@ -49,9 +49,6 @@ SchedulerChoreography::SchedulerChoreography() {
 
   apollo::cyber::proto::CyberConfig cfg;
   if (PathExists(cfg_file) && GetProtoFromFile(cfg_file, &cfg)) {
-    for (auto& thr : cfg.scheduler_conf().threads()) {
-      inner_thr_confs_[thr.name()] = thr;
-    }
     const apollo::cyber::proto::ChoreographyConf& choreography_conf =
         cfg.scheduler_conf().choreography_conf();
     proc_num_ = choreography_conf.choreography_processor_num();
